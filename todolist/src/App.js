@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Todos from './components/Todos';
+import Header from './components/layout/Header';
 
 import './App.css';
 
@@ -23,10 +24,25 @@ class App extends Component {
         title: 'Exercise',
         completed: false
       },
+      {
+        id: 4,
+        title: 'Call Parents',
+        completed: false
+      },
+      {
+        id: 5,
+        title: 'Call Sophia',
+        completed: false
+      },
+      {
+        title: 'Cook',
+        id: 6,
+        completed: false
+      },
     ]
   }
 
-   toggleComplete = (id) => {
+  toggleComplete = (id) => {
     
     this.setState({ todos: this.state.todos.map(todo => {
       if(todo.id === id) {
@@ -36,12 +52,16 @@ class App extends Component {
     }) });
   }
 
+  deleteToDo = (id) => {
+    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] });
+  }
+
   render() {
     
     return (
       <div className="App">
-
-        <Todos todos={this.state.todos} toggleComplete={this.toggleComplete} />
+        < Header / >
+        <Todos todos={this.state.todos} toggleComplete={this.toggleComplete} deleteToDo={this.deleteToDo}/>
         
       </div>
     );

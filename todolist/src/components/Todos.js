@@ -9,7 +9,7 @@ class Todos extends Component {
     
     return this.props.todos.map((todo) => (
       // key is needed as a unique identifier when mapping out the array
-      <TodoItem key={todo.title} todo={todo} toggleComplete={this.props.toggleComplete}/>
+      <TodoItem key={todo.title} todo={todo} toggleComplete={this.props.toggleComplete} deleteToDo={this.props.deleteToDo}/>
     ))
   }
 }
