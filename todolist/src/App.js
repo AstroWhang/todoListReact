@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Todos from './components/Todos';
 import Header from './components/layout/Header';
+import About from './components/pages/About';
 import AddToDo from './components/AddToDo';
 import uuid from 'uuid';
 
@@ -66,13 +68,20 @@ class App extends Component {
   render() {
     
     return (
-      <div className="App">
-        <div className="container">
-          <Header />
-          <AddToDo addTodo={this.addTodo} />
-          <Todos todos={this.state.todos} toggleComplete={this.toggleComplete} deleteToDo={this.deleteToDo} />
-        </div>
-      </div>
+      <Router>
+        <div className="App">
+          <div className="container">
+            <Header />
+            <Route exact path="/" render={props => (
+              <React.Fragment>
+                <AddToDo addTodo={this.addTodo} />
+                <Todos todos={this.state.todos} toggleComplete={this.toggleComplete} deleteToDo={this.deleteToDo} />
+              </React.Fragment>
+            )} />
+            <Route path="/about" component={About} />
+          </div>
+        </div> 
+      </Router>
     );
   }
 }
